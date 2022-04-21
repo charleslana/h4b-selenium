@@ -6,9 +6,14 @@
         <listener
                 class-name="com.h4bselenium.components.ListenersImplementation"/>
     </listeners>
-    <test name="LoginTests">
+<!--    <test name="LoginTests">-->
+<!--        <classes>-->
+<!--            <class name="com.h4bselenium.tests.LoginTest"/>-->
+<!--        </classes>-->
+<!--    </test> &lt;!&ndash; Test &ndash;&gt;-->
+    <test name="RegisterTests">
         <classes>
-            <class name="com.h4bselenium.tests.LoginTest"/>
+            <class name="com.h4bselenium.tests.RegisterTest"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

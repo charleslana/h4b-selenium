@@ -24,28 +24,28 @@ public class ActionEngine {
 
     public void click(WebElement element) {
         try {
+            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("Action %s clicked successfully.", element));
             element.click();
-            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("Action %s clicked successfully.", element.getTagName()));
         } catch (Exception e) {
-            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("Action: %s is failed due to exception: %s", element.getTagName(), e));
+            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("Action: %s is failed due to exception: %s", element, e));
         }
     }
 
     public void isElementPresent(WebElement element) {
         try {
             Assert.assertTrue(element.isDisplayed());
-            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("%s presence of element successfully.", element.getTagName()));
+            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("%s presence of element successfully.", element));
         } catch (Exception e) {
-            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("%s presence of element is failed due to exception: %s", element.getTagName(), e));
+            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("%s presence of element is failed due to exception: %s", element, e));
         }
     }
 
     public void sendKeys(WebElement element, String valueToBeSent) {
         try {
             element.sendKeys(valueToBeSent);
-            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("%s entered value as: %s", element.getTagName(), valueToBeSent));
+            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("%s entered value as: %s", element, valueToBeSent));
         } catch (Exception e) {
-            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("Value entered in field: %s is failed due to exception: %s", element.getTagName(), e));
+            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("Value entered in field: %s is failed due to exception: %s", element, e));
         }
     }
 
