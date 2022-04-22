@@ -12,7 +12,7 @@ public class ExtentReportNG {
 
     static ExtentReports extent;
 
-    public static ExtentReports setupExtentReport() throws Exception {
+    public static ExtentReports setupExtentReport() {
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy HH-mm-ss");
         Date date = new Date();
         String actualDate = format.format(date);
