@@ -5,7 +5,6 @@ import com.h4bselenium.testbase.DriverFactory;
 import com.h4bselenium.testbase.ExtentFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -13,10 +12,8 @@ import org.testng.Assert;
 import java.time.Duration;
 
 public class ActionEngine {
-    private final WebDriver driver = DriverFactory.getInstance().getDriver();
 
-    @FindBy(xpath = "//div[@role='alert']")
-    public WebElement toastError;
+    private final WebDriver driver = DriverFactory.getInstance().getDriver();
 
     private WebDriverWait await() {
         return new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -37,6 +34,16 @@ public class ActionEngine {
             ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("%s presence of element successfully.", element));
         } catch (Exception e) {
             ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("%s presence of element is failed due to exception: %s", element, e));
+        }
+    }
+
+    public void isNotElementPresent(WebElement element) {
+        try {
+            await().until(ExpectedConditions.invisibilityOf(element));
+            Assert.assertFalse(element.isDisplayed());
+            ExtentFactory.getInstance().getExtent().log(Status.PASS, String.format("%s is not presence of element successfully.", element));
+        } catch (Exception e) {
+            ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("%s is not presence of element is failed due to exception: %s", element, e));
         }
     }
 

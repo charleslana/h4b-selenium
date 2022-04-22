@@ -17,8 +17,9 @@ public class RegisterTest extends TestBase {
     }
 
     @Test
-    public void registerSuccess() {
+    public void registerAccountUserSuccess() {
         String autoGenerateText = String.format("user_automated%s%s", RandomStringUtils.randomAlphabetic(10), "@test.com");
         registerPageObjects.register(autoGenerateText);
+        registerPageObjects.registerSuccess();
     }
 }

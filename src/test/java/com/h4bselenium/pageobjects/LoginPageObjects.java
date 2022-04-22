@@ -1,6 +1,7 @@
 package com.h4bselenium.pageobjects;
 
 import com.h4bselenium.components.ActionEngine;
+import com.h4bselenium.testbase.DriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,7 +27,8 @@ public class LoginPageObjects extends ActionEngine {
     }
 
     public void validateLoginError() {
-        isElementPresent(toastError);
+        CommonObjects commonObjects = new CommonObjects(DriverFactory.getInstance().getDriver());
+        isElementPresent(commonObjects.toastError);
     }
 
     public void waitNavigateToDashboard() {
