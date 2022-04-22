@@ -39,17 +39,7 @@ public class ListenersImplementation implements ITestListener {
     public void onTestFailure(ITestResult result) {
         ExtentFactory.getInstance().getExtent().log(Status.FAIL, String.format("Test Case: %s is Failed.", result.getMethod().getMethodName()));
         ExtentFactory.getInstance().getExtent().log(Status.FAIL, result.getThrowable());
-        File src = ((TakesScreenshot) DriverFactory.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy HH-mm-ss");
-        Date date = new Date();
-        String actualDate = format.format(date);
-        String screenshotPath = System.getProperty("user.dir").concat(String.format("/src/test/resources/reports/screenshots/%s.jpeg", actualDate));
-        File destination = new File(screenshotPath);
-        try {
-            FileUtils.copyFile(src, destination);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String screenshotPath = getSetupScreenshot();
         ExtentFactory.getInstance().getExtent().addScreenCaptureFromPath(screenshotPath, "Test case failure screenshot");
         ExtentFactory.getInstance().removeExtentObject();
     }
@@ -82,5 +72,20 @@ public class ListenersImplementation implements ITestListener {
     @Override
     public void onFinish(ITestContext context) {
         report.flush();
+    }
+
+    private String getSetupScreenshot() {
+        File src = ((TakesScreenshot) DriverFactory.getInstance().getDriver()).getScreenshotAs(OutputType.FILE);
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyy HH-mm-ss");
+        Date date = new Date();
+        String actualDate = format.format(date);
+        String screenshotPath = System.getProperty("user.dir").concat(String.format("/src/test/resources/reports/screenshots/%s.jpeg", actualDate));
+        File destination = new File(screenshotPath);
+        try {
+            FileUtils.copyFile(src, destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return screenshotPath;
     }
 }
