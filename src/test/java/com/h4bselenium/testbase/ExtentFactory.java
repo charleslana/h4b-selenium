@@ -8,7 +8,6 @@ public class ExtentFactory {
     ThreadLocal<ExtentTest> extent = new ThreadLocal<>();
 
     private ExtentFactory() {
-
     }
 
     public static ExtentFactory getInstance() {

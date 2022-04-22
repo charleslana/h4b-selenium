@@ -18,6 +18,10 @@ public class ExtentReportNG {
         String actualDate = format.format(date);
         String reportPath = System.getProperty("user.dir").concat(String.format("/src/test/resources/reports/ExecutionReport_%s.html", actualDate));
         ExtentSparkReporter sparkReport = new ExtentSparkReporter(reportPath);
+        return setupExtent(sparkReport);
+    }
+
+    private static ExtentReports setupExtent(ExtentSparkReporter sparkReport) {
         extent = new ExtentReports();
         extent.attachReporter(sparkReport);
         sparkReport.config().setDocumentTitle("DocumentTitle");
