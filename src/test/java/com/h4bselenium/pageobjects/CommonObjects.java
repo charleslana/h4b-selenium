@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class CommonObjects {
+public class CommonObjects extends ActionEngine {
 
     @FindBy(xpath = "//div[@role='alert']")
     public WebElement toastError;
@@ -20,11 +20,10 @@ public class CommonObjects {
     }
 
     public void loading(Boolean isLoading) {
-        ActionEngine actionEngine = new ActionEngine();
         if (isLoading) {
-            actionEngine.isElementPresent(this.isLoading.get(0));
+            isElementPresent(this.isLoading.get(0));
         } else {
-            actionEngine.isNotElementPresent(this.isLoading.get(0));
+            isNotElementPresent(this.isLoading.get(0));
         }
     }
 }
